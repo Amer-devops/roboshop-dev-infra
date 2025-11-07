@@ -25,6 +25,7 @@ resource "terraform_data" "mongodb" {
   }
 
   # terraform copies this file to mongodb server
+   
   provisioner "file" {
     source = "bootstrap.sh"
     destination = "/tmp/bootstrap.sh"
