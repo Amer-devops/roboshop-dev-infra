@@ -32,5 +32,5 @@ variable "zone_id" {
 }
 
 variable "domain_name" {
-    default = "daws-86s.icu"
+    default = "daws86s.icu"
 }
