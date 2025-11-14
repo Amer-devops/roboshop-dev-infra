@@ -38,3 +38,11 @@ data "aws_ssm_parameter" "database_subnet_ids"{
   name = "/${var.project_name}/${var.environment}/database_subnet_ids"
 }
 
+# data "aws_route53_zone" "selected" {
+#   name         = "example.com." # Ensure to include the trailing dot for the FQDN
+#   private_zone = false          # Set to true if it's a private hosted zone
+# }
+
+# output "hosted_zone_id" {
+#   value = data.aws_route53_zone.selected.zone_id
+# }

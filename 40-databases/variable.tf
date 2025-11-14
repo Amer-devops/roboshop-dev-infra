@@ -26,3 +26,11 @@ variable "sg_names" {
     ]
   
 }
+
+variable "zone_id" {
+    default = "Z09921652HC7E9W0W018V"
+}
+
+variable "domain_name" {
+    default = "daws-86s.icu"
+}
