@@ -182,10 +182,11 @@ resource "terraform_data" "mysql" {
 
 resource "aws_route53_record" "mongodb" {
   zone_id = var.zone_id
-  name    = "mongodb-${var.environment}.${var.domain_name}" # mongodb-dev.daws-86s.icu
+  name    = "mongodb-${var.environment}.${var.domain_name}" # mongodb-dev.daws86s.fun
   type    = "A"
   ttl     = 1
-  records = [aws.instance.mongodb.private_ip]
+  records = [aws_instance.mongodb.private_ip]
+  allow_overwrite = true
 }
 
 resource "aws_route53_record" "redis" {
@@ -194,6 +195,7 @@ resource "aws_route53_record" "redis" {
   type    = "A"
   ttl     = 1
   records = [aws.instance.redis.private_ip]
+  allow_overwrite = true
 }
 
 resource "aws_route53_record" "rabbitmq" {
@@ -202,6 +204,7 @@ resource "aws_route53_record" "rabbitmq" {
   type    = "A"
   ttl     = 1
   records = [aws.instance.rabbitmq.private_ip]
+  allow_overwrite = true
 }
 
 resource "aws_route53_record" "mysql" {
@@ -210,4 +213,5 @@ resource "aws_route53_record" "mysql" {
   type    = "A"
   ttl     = 1
   records = [aws.instance.mysql.private_ip]
+  allow_overwrite = true
 }
