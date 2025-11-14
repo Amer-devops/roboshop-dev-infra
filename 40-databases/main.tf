@@ -191,27 +191,27 @@ resource "aws_route53_record" "mongodb" {
 
 resource "aws_route53_record" "redis" {
   zone_id = var.zone_id
-  name    = "redis-${var.environment}.${var.domain_name}" # redis-dev.daws-86s.icu
+  name    = "redis-${var.environment}.${var.domain_name}" # redis-dev.daws86s.fun
   type    = "A"
   ttl     = 1
-  records = [aws.instance.redis.private_ip]
-  allow_overwrite = true
-}
-
-resource "aws_route53_record" "rabbitmq" {
-  zone_id = var.zone_id
-  name    = "rabbitmq-${var.environment}.${var.domain_name}" # rabbitmq-dev.daws-86s.icu
-  type    = "A"
-  ttl     = 1
-  records = [aws.instance.rabbitmq.private_ip]
+  records = [aws_instance.redis.private_ip]
   allow_overwrite = true
 }
 
 resource "aws_route53_record" "mysql" {
   zone_id = var.zone_id
-  name    = "mysql-${var.environment}.${var.domain_name}" # mysql-dev.daws-86s.icu
+  name    = "mysql-${var.environment}.${var.domain_name}" # mysql-dev.daws86s.fun
   type    = "A"
   ttl     = 1
-  records = [aws.instance.mysql.private_ip]
+  records = [aws_instance.mysql.private_ip]
+  allow_overwrite = true
+}
+
+resource "aws_route53_record" "rabbitmq" {
+  zone_id = var.zone_id
+  name    = "rabbitmq-${var.environment}.${var.domain_name}" # rabbitmq-dev.daws86s.fun
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.rabbitmq.private_ip]
   allow_overwrite = true
 }
