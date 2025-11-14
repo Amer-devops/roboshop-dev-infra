@@ -28,8 +28,7 @@ resource "terraform_data" "catalogue" {
     host     = aws_instance.catalogue.private_ip
   }
 
-  # terraform copies this file to catalogue server
-  
+   # terraform copies this file to catalogue server
   provisioner "file" {
     source = "catalogue.sh"
     destination = "/tmp/catalogue.sh"
@@ -38,12 +37,11 @@ resource "terraform_data" "catalogue" {
   provisioner "remote-exec" {
     inline = [
         "chmod +x /tmp/catalogue.sh",
-        
+        # "sudo sh /tmp/catalogue.sh"
         "sudo sh /tmp/catalogue.sh catalogue ${var.environment}"
     ]
   }
 }
-
 
 
 
