@@ -1,3 +1,12 @@
+resource "aws_ssm_parameter" "mysql_root_password" {
+  name        = "/roboshop/${var.environment}/mysql/mysql_root_password"
+  type        = "SecureString"
+  value       = "RoboShop@123"
+  description = "MySQL root password for roboshop"
+}
+
+# mongodb
+
 resource "aws_instance" "mongodb" {
     ami = local.ami_id
     instance_type = "t3.micro"
