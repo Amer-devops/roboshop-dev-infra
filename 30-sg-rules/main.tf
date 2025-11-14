@@ -52,6 +52,8 @@ resource "aws_security_group_rule" "mysql_bastion" {
   to_port           = 22
 }
 
+# to connect catalogue through bastion
+
 resource "aws_security_group_rule" "catalogue_bastion" {
   type              = "ingress"
   security_group_id = local.catalogue_sg_id
