@@ -1,9 +1,3 @@
-resource "aws_ssm_parameter" "mysql_root_password" {
-  name        = "/roboshop/${var.environment}/mysql/mysql_root_password"
-  type        = "SecureString"
-  value       = "RoboShop@123"
-  description = "MySQL root password for roboshop"
-}
 
 # mongodb
 
