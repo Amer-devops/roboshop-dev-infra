@@ -170,7 +170,6 @@ resource "aws_autoscaling_group" "catalogue" {
 }
 
 # ASG-POLICY (auto-scaling-group-policy) for catalogue
-
 resource "aws_autoscaling_policy" "catalogue" {
   autoscaling_group_name = aws_autoscaling_group.catalogue.name
   name                   = "${local.common_name_suffix}-catalogue"
