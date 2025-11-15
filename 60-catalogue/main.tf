@@ -43,21 +43,17 @@ resource "terraform_data" "catalogue" {
   }
 }
 
-# resource "terraform_data" "catalogue" {
-#   connection {
-#     type     = "ssh"
-#     user     = "ec2-user"
-#     password = "DevOps321"
-#     host     = aws_instance.catalogue.private_ip
-#   }
+# Stop the EC2 instance before taking the AMI
+resource "aws_ec2_instance_state" "catalogue" {
+  instance_id = aws_instance.catalogue.id
+  state       = "stopped"
+  depends_on = [ terraform_data.catalogue ]
+}
 
-#   provisioner "remote-exec" {
-#     inline = [
-#       "ansible-pull -U https://github.com/Amer-devops/roboshop-ansible.git -i localhost, -e env=dev -e MONGODB_HOST=mongodb-dev.daws86s.icu catalogue.yml"
-#     ]
-#   }
-# }
-
-
-
+# Taking AMI from instance after stopping
+resource "aws_ami_from_instance" "catalogue" {
+  name               = "${local.common_name_suffix}-catalogue-ami"
+  source_instance_id = aws_instance.catalogue.id
+  depends_on = [ aws_ec2_instance_state.catalogue ]
+}
 
