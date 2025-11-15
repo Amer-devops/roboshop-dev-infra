@@ -43,6 +43,21 @@ resource "terraform_data" "catalogue" {
   }
 }
 
+# resource "terraform_data" "catalogue" {
+#   connection {
+#     type     = "ssh"
+#     user     = "ec2-user"
+#     password = "DevOps321"
+#     host     = aws_instance.catalogue.private_ip
+#   }
+
+#   provisioner "remote-exec" {
+#     inline = [
+#       "ansible-pull -U https://github.com/Amer-devops/roboshop-ansible.git -i localhost, -e env=dev -e MONGODB_HOST=mongodb-dev.daws86s.icu catalogue.yml"
+#     ]
+#   }
+# }
+
 
 
 
