@@ -183,3 +183,25 @@ resource "aws_autoscaling_policy" "catalogue" {
     target_value = 75.0
   }
 }
+
+resource "aws_lb_listener_rule" "catalogue" {
+  listener_arn = aws_lb_listener.front_end.arn
+  priority     = 100
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.static.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/static/*"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["example.com"]
+    }
+  }
+}
