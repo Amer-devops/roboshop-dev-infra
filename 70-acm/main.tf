@@ -6,7 +6,7 @@ resource "aws_acm_certificate" "roboshop" {
   tags = merge (
         local.common_tags,
         {
-            Name = "${local.common_name_suffix}-mongodb" # roboshop-dev-mongodb
+            Name = local.common_name_suffix # roboshop-dev
         }
     )
   lifecycle {
@@ -17,7 +17,7 @@ resource "aws_acm_certificate" "roboshop" {
 
 resource "aws_route53_record" "roboshop" {
   for_each = {
-    for dvo in aws_acm_certificate.roboshop : dvo.domain_name => {
+     for dvo in aws_acm_certificate.roboshop.domain_validation_options : dvo.domain_name => {
       name   = dvo.resource_record_name
       record = dvo.resource_record_value
       type   = dvo.resource_record_type
