@@ -1,5 +1,5 @@
 module "vpc" {
-source = "git::https://github.com/Amer-devops/terraform-aws-vpc.git"
+source = "git::https://github.com/Amer-devops/terraform-aws-vpc.git?ref=main"
     
   
   # vpc
@@ -26,9 +26,3 @@ source = "git::https://github.com/Amer-devops/terraform-aws-vpc.git"
 }
 
 
-
-# Declare the data source
-
-# data "aws_availability_zones" "available" {
-#   state = "available"
-# }
