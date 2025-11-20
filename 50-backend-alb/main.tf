@@ -10,12 +10,12 @@ resource "aws_lb" "backend_alb" {
   tags = merge (
         local.common_tags,
         {
-            Name = "${var.project_name}-${var.environment}-bastion"
+            Name = "${var.project_name}-${var.environment}-backend-alb"
         }
     )
 }
 
-# Backend ALB listening on port number 80
+# Backend ALB listener --> ALB listening on port number 80
 
 resource "aws_lb_listener" "backend_alb" {
   load_balancer_arn = aws_lb.backend_alb.arn
@@ -33,6 +33,7 @@ resource "aws_lb_listener" "backend_alb" {
   }
 }
 
+# Create Alias record for backend_alb
 
 resource "aws_route53_record" "backend_alb" {
   zone_id = var.zone_id
