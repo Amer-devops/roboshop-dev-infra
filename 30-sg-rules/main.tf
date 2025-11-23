@@ -284,7 +284,6 @@ resource "aws_security_group_rule" "frontend_alb_public" {
 }
 
 
-
 resource "aws_security_group_rule" "bastion_pc" {
   type              = "ingress"
   security_group_id = local.bastion_sg_id

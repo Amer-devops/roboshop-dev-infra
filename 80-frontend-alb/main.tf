@@ -11,7 +11,7 @@ resource "aws_lb" "frontend_alb" {
   tags = merge (
         local.common_tags,
         {
-            Name = "${var.project_name}-${var.environment}-frontend_alb"
+        Name = "${local.common_name_suffix}-frontend-alb"
         }
     )
 }
